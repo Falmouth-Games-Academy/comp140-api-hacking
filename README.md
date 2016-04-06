@@ -20,7 +20,7 @@ An RTS themed API, I want to try to make an external executable that can be used
 
 ###The Tech
 
-I will be utilising the capabilities of the Myo gesture control system. This uses a standard C++ coding language with a Myo library for gesture recognition.
+I will be utilising the capabilities of the Myo gesture control system. This uses a standard C++ coding language with a Myo library for gesture recognition, or possible Lua scripting as this is the language that the Myo developers decided to use for their SDK.
 
 There is already a mouse and keyboard input software available, but through my research I have not found a combination of the two. This is a good opportunity to combine them to create a basic RTS control system.
 
