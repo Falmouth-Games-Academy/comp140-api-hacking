@@ -12,3 +12,8 @@ The component I intend to make will be for the COMP150 game. It will let the pla
 
 ####Identify and justify which technologies you will use:
 Facebook have their own API, [Facebook Graph API](https://developers.facebook.com/docs/graph-api), that can get a user's friend list if the friend is using the app as well however it doesn't appear to be compatiable with C++. There are a few open source libraries such as [Windows SDK for Facebook](https://github.com/Microsoft/winsdkfb) and [C++ REST](http://casablanca.codeplex.com/) that I may be able to use with the Graph API.
+
+I've chosen to use [C++ REST SDK](http://casablanca.codeplex.com/) to connect to the [Facebook Graph API](https://developers.facebook.com/docs/graph-api) using JSON.  I've chosen these two because the Facebook graph API is an offical one that has all the functionaily I need, and C++ REST SDK because it's C++ like the COMP150 game I intend to intergrate it into and it allows me to use JSON to communicate with the Facebook graph API.
+
+###Sprint 1:
+
