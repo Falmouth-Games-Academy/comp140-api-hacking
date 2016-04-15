@@ -13,3 +13,9 @@
 
 
 // TODO: reference additional headers your program requires here
+#include <string>
+#include <iostream>
+#include <cpprest/http_client.h>
+#include <cpprest/json.h>
+#include <cpprest/filestream.h>
+
