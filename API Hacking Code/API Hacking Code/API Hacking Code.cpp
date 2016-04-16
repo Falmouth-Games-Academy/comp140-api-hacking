@@ -10,19 +10,20 @@ using namespace concurrency::streams;       // Asynchronous streams
 
 int main(int argc, char* argv[])
 {
+	//TODO: 
+	//Handle results using JSON
+	//seperate out into functions
 	auto fileStream = std::make_shared<ostream>();
 
 	// Open stream to output file.
-	pplx::task<void> requestTask = fstream::open_ostream(U("results.html")).then([=](ostream outFile)
+	pplx::task<void> requestTask = fstream::open_ostream(U("results.txt")).then([=](ostream outFile)
 	{
 		*fileStream = outFile;
 
 		// Create http_client to send the request.
 		http_client client(U("http://api.open-notify.org/iss-now.json"));
 
-		// Build request URI and start the request.
-		//uri_builder builder(U("/search"));
-		//builder.append_query(U("q"), U("Casablanca CodePlex"));
+		//Gets reults
 		return client.request(methods::GET);
 	})
 
