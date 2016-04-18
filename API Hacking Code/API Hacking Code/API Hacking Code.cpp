@@ -10,13 +10,17 @@ using namespace concurrency::streams;       // Asynchronous streams
 
 int main(int argc, char* argv[])
 {
+	//Using the casablanca Http Client Tutorial, currently just goes to the open notify page and saves it 
+	
 	//TODO: 
+	//Make a JSON object
 	//Handle results using JSON
-	//seperate out into functions
+	//Intergrate with COMP150 game
+
 	auto fileStream = std::make_shared<ostream>();
 
 	// Open stream to output file.
-	pplx::task<void> requestTask = fstream::open_ostream(U("results.txt")).then([=](ostream outFile)
+	pplx::task<void> requestTask = fstream::open_ostream(U("ISS_location.html")).then([=](ostream outFile)
 	{
 		*fileStream = outFile;
 
@@ -36,13 +40,12 @@ int main(int argc, char* argv[])
 		return response.body().read_to_end(fileStream->streambuf());
 	})
 
-		// Close the file stream.
+		// Close the file stream
 		.then([=](size_t)
 	{
 		return fileStream->close();
 	});
 
-	// Wait for all the outstanding I/O to complete and handle any exceptions
 	try
 	{
 		requestTask.wait();
