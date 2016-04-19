@@ -5,11 +5,11 @@ NB: this repository current does not contain a `.gitignore` file. I recommend yo
 
 ## Proposal
 
+Skyrim is a game where you can procrastinate about doing quests, ending up with a backlog hundreds of quests in your journal... This plugin will give the player an extra incentive to get those quests done!  
+(Essentially, gamifying a game mechanic of a game using an app that gamifies real life...?! o.O)  
 
-(Still not sure)
+I intend to create a plugin for Skyrim that uses the [Habitica API](https://habitica.com/static/api) to add any outstanding named Skyrim quests to the Habitica To-do list. I will do this by creating a [Skyrim Script Extender](http://skse.silverlock.org/) plugin using C++ to connect to the Habitica API. To connect to the Habitica API using C++, I will perform POST/GET requests using the [C++ REST SDK (Casablanca)](https://casablanca.codeplex.com/). I will then make a script in Papyrus (the language Skyrim Creation Kit uses) to access the quests in the game and call my custom SKSE plugin function.
 
-Skyrim is a game where you can procrastinate about doing quests, ending up with a backlog hundreds of quests in your journal... This plugin will give the player an extra incentive to get those quests done!  (Gamifying a game mechanic of a game using an app that gamifies real life...?! o.O)  
+A description of Habitica is found on [their website](https://habitica.com).
 
-I intend to create a plugin for Skyrim that uses the [Habitica API](https://habitica.com/static/api) to add any outstanding Skyrim quests to the Habitica To-do list. It could also add a positive Habit or Daily to Habitica's list for completing a quest. Perhaps as a stretch goal, the custom rewards on habitica could correspond to in-game Skyrim items, so that they appear in the inventory when bought using Habitica's reward system...  
-
-I will create the plugin using [Skyrim Script Extender](http://skse.silverlock.org/), by defining my own Papyrus functions to interface with the Habitica API using C++, and then doing the scripting that gets the quests and from Skyrim and calls that function using Papyrus.
+Perhaps as a stretch goal, the custom rewards on habitica could correspond to in-game Skyrim items, so that they appear in the inventory when bought using Habitica's reward system...  
