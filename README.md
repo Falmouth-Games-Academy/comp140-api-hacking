@@ -13,3 +13,8 @@ I intend to create a plugin for Skyrim that uses the [Habitica API](https://habi
 A description of Habitica is found on [their website](https://habitica.com).
 
 Perhaps as a stretch goal, the custom rewards on habitica could correspond to in-game Skyrim items, so that they appear in the inventory when bought using Habitica's reward system...  
+
+
+##Sources used
+
+The template for the Visual Studio project and main.cpp of my SKSE plugin that I used can be found [here](https://github.com/xanderdunn/skaar/releases/tag/plugin3). I used [this](https://github.com/xanderdunn/skaar/wiki/SKSE%3A-Getting-Started) tutorial and that Visual Studio solution to get started.
