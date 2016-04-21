@@ -2,7 +2,7 @@
 
 namespace SkybiticaNamespace
 {
-	float AddQuest(StaticFunctionTag *base);
+	float AddQuest(StaticFunctionTag *base, BSFixedString questName);
 
 	bool RegisterFuncs(VMClassRegistry* registry);
 }
