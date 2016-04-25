@@ -30,6 +30,7 @@ namespace SkybiticaNamespace {
 
 		//Make the ID of the Todo be the quest ID, so it can be accessed later
 		jsonObject[U("id")] = web::json::value(convertToWideString(questID.data));
+
 		
 		// Set up Habitica tag object to add to body of request
 		web::json::value habiticaTaskTag = web::json::value::object();
@@ -70,11 +71,41 @@ namespace SkybiticaNamespace {
 	void CompleteQuestInHabitica(StaticFunctionTag *base, BSFixedString questID)
 	{
 
+		// Create http_client to send the request.
+		web::http::client::http_client client(U("https://habitica.com/"));
+
+		// Create request with POST protocol
+		web::http::http_request request(web::http::methods::POST);
+
+		// Build the URI
+		web::uri_builder builder(U("/api/v2/user/tasks/"));
+		builder.append(convertToWideString(questID.data));
+		builder.append(U("/up"));
+		request.set_request_uri(builder.to_string());
+
+		// Headers for Habitica authentication
+		request.headers().add(U("x-api-user"), convertToWideString(API_USER));
+		request.headers().add(U("x-api-key"), convertToWideString(API_KEY));
+
+		// Make HTTP request as asynchronous task
+		pplx::task<web::http::http_response> response = client.request(request);
+
+		// Wait for all the outstanding I/O to complete and handle any exceptions
+		try
+		{
+			response.wait();
+		}
+		catch (const std::exception &e)
+		{
+			_MESSAGE("Error exception:%s\n", e.what());
+		}
 	}
 
 	bool RegisterFuncs(VMClassRegistry* registry) {
 		registry->RegisterFunction(
 			new NativeFunction2 <StaticFunctionTag, float, BSFixedString, BSFixedString>("AddQuestToHabitica", "Skybitica", SkybiticaNamespace::AddQuestToHabitica, registry));
+		registry->RegisterFunction(
+			new NativeFunction1 <StaticFunctionTag, void, BSFixedString>("CompleteQuestInHabitica", "Skybitica", SkybiticaNamespace::CompleteQuestInHabitica, registry));
 
 		return true;
 	}

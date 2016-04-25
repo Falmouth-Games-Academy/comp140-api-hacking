@@ -7,11 +7,12 @@ Event OnInit()
 	Int i
 	While i < quests.GetSize()
 		Quest questToBeChecked = quests.GetAt(i) as Quest
-		if questToBeChecked.IsRunning() && !questToBeChecked.IsCompleted()
+		If questToBeChecked.IsRunning() && !questToBeChecked.IsCompleted()
 			string questID = questToBeChecked.GetId()
 			string questname = questToBeChecked.GetName()
-			Debug.Notification(AddQuest(questName))
+			Debug.Notification(AddQuestToHabitica(questName, questID))
 			Debug.Notification("'" + questname + "'" + "added to Habitica Todo List!")
+			CompleteQuestInHabitica(questToBeChecked.getID())
 		EndIf
 		i += 1
 	EndWhile
