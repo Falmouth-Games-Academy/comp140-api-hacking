@@ -15,16 +15,23 @@ namespace SkybiticaNamespace {
 		return wstrTo;
 	}
 
-	float AddQuest(StaticFunctionTag *base, BSFixedString questName) 
+	float AddQuestToHabitica(StaticFunctionTag *base, BSFixedString questName, BSFixedString questID) 
 	{
 		_MESSAGE("AddQuest() will return %f", 3.3);
 
 		// Create json object with Habitica task information for body of request
 		web::json::value jsonObject = web::json::value::object();		
 
+		// Add to Habitica Todo list
 		jsonObject[U("type")] = web::json::value(U("todo"));
+
+		// Make the Todo be displayed as the quest name
 		jsonObject[U("text")] = web::json::value(convertToWideString(questName.data));
+
+		//Make the ID of the Todo be the quest ID, so it can be accessed later
+		jsonObject[U("id")] = web::json::value(convertToWideString(questID.data));
 		
+		// Set up Habitica tag object to add to body of request
 		web::json::value habiticaTaskTag = web::json::value::object();
 		habiticaTaskTag[U("skyrim")] = web::json::value(U("true"));
 		jsonObject[U("tags")] = web::json::value(habiticaTaskTag);
@@ -60,9 +67,14 @@ namespace SkybiticaNamespace {
 		return 3.3;
 	}
 
+	void CompleteQuestInHabitica(StaticFunctionTag *base, BSFixedString questID)
+	{
+
+	}
+
 	bool RegisterFuncs(VMClassRegistry* registry) {
 		registry->RegisterFunction(
-			new NativeFunction1 <StaticFunctionTag, float, BSFixedString>("AddQuest", "Skybitica", SkybiticaNamespace::AddQuest, registry));
+			new NativeFunction2 <StaticFunctionTag, float, BSFixedString, BSFixedString>("AddQuestToHabitica", "Skybitica", SkybiticaNamespace::AddQuestToHabitica, registry));
 
 		return true;
 	}
