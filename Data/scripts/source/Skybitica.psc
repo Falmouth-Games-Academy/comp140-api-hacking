@@ -1,3 +1,3 @@
 scriptName Skybitica Hidden
 
-float Function AddQuest() global native
+float Function AddQuest(string questName) global native

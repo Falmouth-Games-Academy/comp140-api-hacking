@@ -20,13 +20,13 @@ namespace SkybiticaNamespace {
 		_MESSAGE("AddQuest() will return %f", 3.3);
 
 		// Create json object with Habitica task information for body of request
-		web::json::value jsonObject = web::json::value::object();
-
-		web::json::value habiticaTaskTag = web::json::value::object();
-		habiticaTaskTag[U("skyrim")] = web::json::value(U("true"));
+		web::json::value jsonObject = web::json::value::object();		
 
 		jsonObject[U("type")] = web::json::value(U("todo"));
 		jsonObject[U("text")] = web::json::value(convertToWideString(questName.data));
+		
+		web::json::value habiticaTaskTag = web::json::value::object();
+		habiticaTaskTag[U("skyrim")] = web::json::value(U("true"));
 		jsonObject[U("tags")] = web::json::value(habiticaTaskTag);
 
 		// Create http_client to send the request.
