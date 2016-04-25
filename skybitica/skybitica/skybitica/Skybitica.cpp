@@ -27,23 +27,28 @@ namespace SkybiticaNamespace {
 		return web::uri_builder(U("/api/v2/user/tasks"));
 	}
 
-	void doRequest(web::http::http_request &request)
+	web::http::status_code doRequest(web::http::http_request &request)
 	{
 		web::http::client::http_client client = getClient();
 
 		// Make HTTP request as asynchronous task
-		pplx::task<web::http::http_response> response = client.request(request);
+		pplx::task<web::http::status_code> requestTask = client.request(request).then([=](web::http::http_response response)
+		{
+			_MESSAGE("Received response status code:%u\n", response.status_code());
+			return response.status_code();
+		});
 
 		// Wait for all the outstanding I/O to complete and handle any exceptions
 		try
 		{
-			response.wait();
+			requestTask.wait();
 		}
 		catch (const std::exception &e)
 		{
 			_MESSAGE("Error exception:%s\n", e.what());
 		}
 
+		return requestTask.get();
 	}
 
 	web::json::value createTask(BSFixedString questName, BSFixedString questID)
@@ -84,7 +89,7 @@ namespace SkybiticaNamespace {
 		request.headers().add(U("x-api-key"), convertToWideString(API_KEY));
 		request.set_body(task);
 
-		doRequest(request);
+		web::http::status_code responseStatus = doRequest(request);
 
 		return 3.3;
 	}
