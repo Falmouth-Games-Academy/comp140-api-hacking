@@ -21,8 +21,13 @@ namespace SkybiticaNamespace {
 
 		// Create json object with Habitica task information for body of request
 		web::json::value jsonObject = web::json::value::object();
+
+		web::json::value habiticaTaskTag = web::json::value::object();
+		habiticaTaskTag[U("skyrim")] = web::json::value(U("true"));
+
 		jsonObject[U("type")] = web::json::value(U("todo"));
 		jsonObject[U("text")] = web::json::value(convertToWideString(questName.data));
+		jsonObject[U("tags")] = web::json::value(habiticaTaskTag);
 
 		// Create http_client to send the request.
 		web::http::client::http_client client(U("https://habitica.com/"));
@@ -35,6 +40,8 @@ namespace SkybiticaNamespace {
 		request.set_request_uri(builder.to_string());
 
 		// Headers for Habitica authentication
+		request.headers().add(U("x-api-user"), convertToWideString(API_USER));
+		request.headers().add(U("x-api-key"), convertToWideString(API_KEY));
 		request.set_body(jsonObject);
 
 		// Make HTTP request as asynchronous task

@@ -27,7 +27,7 @@ extern "C"	{
 		if(skse->isEditor)
 		{
 			_MESSAGE("loaded in editor, marking as incompatible");
-
+			 
 			return false;
 		}
 		else if(skse->runtimeVersion != RUNTIME_VERSION_1_9_32_0)
