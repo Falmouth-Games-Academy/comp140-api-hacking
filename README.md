@@ -14,6 +14,16 @@ The API I intend to use is [Open Notify](http://open-notify.org/) this API can g
 
 I've chosen to use [C++ REST SDK](http://casablanca.codeplex.com/) to connect to the API and will use JSON to get the data. I've chosen use Open Notify as it uses JSON and gives me all the data I need and I've chosen to use C++ REST SDK over the other libraries as it supported by Microsft and easily installed into Visual Studio.
 
+##Tutorials used:
+* [Micorsoft tutorial on JSON and get requests using C++ REST SDK](https://msdn.microsoft.com/en-us/library/jj950082.aspx)
+* [drdobbs tutorial on extracting and printing information from a JSON object](http://www.drdobbs.com/tools/json-and-the-microsoft-c-rest-sdk/240164821)
+
+
 ##Sprint 1:  
-![End of sprint 1 board](https://raw.githubusercontent.com/MaddieK19/comp140-api-hacking/master/Trello%20boards%20and%20cards/End%20of%20sprint%20one.PNG)
+![End of sprint 1 board](https://raw.githubusercontent.com/MaddieK19/comp140-api-hacking/master/Trello%20boards%20and%20cards/End%20of%20sprint%20one.PNG)  
+At the end of this sprint the code can connect to the Open Notify API and request the location of the ISS, it then saves that infomation to a html file. In the next sprint I intend to change it to extract the JSON information instead of having to save a file and then go through an external file.
+
+##Sprint 2:
+![End of sprint 2]()  
+
 
