@@ -51,7 +51,7 @@ namespace SkybiticaNamespace {
 		return requestTask.get();
 	}
 
-	web::json::value createTask(BSFixedString questName, BSFixedString questID)
+	web::json::value createTask(std::wstring questName, std::wstring questID)
 	{
 		// Create json object with Habitica task information for body of request
 		web::json::value jsonObject = web::json::value::object();
@@ -60,10 +60,10 @@ namespace SkybiticaNamespace {
 		jsonObject[U("type")] = web::json::value(U("todo"));
 
 		// Make the Todo be displayed as the quest name
-		jsonObject[U("text")] = web::json::value(convertToWideString(questName.data));
+		jsonObject[U("text")] = web::json::value(questName);
 
 		//Make the ID of the Todo be the quest ID, so it can be accessed later
-		jsonObject[U("id")] = web::json::value(convertToWideString(questID.data));
+		jsonObject[U("id")] = web::json::value(questID);
 
 		// Set up Habitica tag object to add to body of request
 		web::json::value habiticaTaskTag = web::json::value::object();
@@ -73,11 +73,37 @@ namespace SkybiticaNamespace {
 		return jsonObject;
 	}
 
-	float AddQuestToHabitica(StaticFunctionTag *base, BSFixedString questName, BSFixedString questID) 
+	bool taskExists(BSFixedString questID)
+	{
+		web::uri_builder uri = getUri();
+		uri.append(convertToWideString(questID.data));
+
+		web::http::http_request request(web::http::methods::GET);
+		request.set_request_uri(uri.to_string());
+		
+
+		// Headers for Habitica authentication
+		request.headers().add(U("x-api-user"), convertToWideString(API_USER));
+		request.headers().add(U("x-api-key"), convertToWideString(API_KEY));
+
+		web::http::status_code responseStatus = doRequest(request);
+
+		if (responseStatus == 200)
+		{
+			_MESSAGE("Task exists");
+			return true;
+		}
+		else
+		{
+			_MESSAGE("Task doesn't exist");
+			return false;
+		}
+	}
+
+	int addTask(std::wstring taskName, std::wstring taskID)
 	{
 		_MESSAGE("AddQuest() will return %f", 3.3);
-
-		web::json::value task = createTask(questName, questID);
+		web::json::value task = createTask(taskName, taskID);
 		web::uri_builder uri = getUri();
 
 		// Create request with POST protocol
@@ -91,11 +117,23 @@ namespace SkybiticaNamespace {
 
 		web::http::status_code responseStatus = doRequest(request);
 
-		return 3.3;
+		return responseStatus;
 	}
 
-	void CompleteQuestInHabitica(StaticFunctionTag *base, BSFixedString questID)
+	float AddQuestToHabitica(StaticFunctionTag *base, BSFixedString questName, BSFixedString questID) 
 	{
+		
+
+		return addTask(convertToWideString(questName.data), convertToWideString(questID.data));
+	}
+
+	void CompleteQuestInHabitica(StaticFunctionTag *base, BSFixedString questName, BSFixedString questID)
+	{
+		if (!taskExists(questID))
+		{
+			addTask(convertToWideString(questName.data), convertToWideString(questID.data));
+		}
+		/*
 		// Create request with POST protocol
 		web::http::http_request request(web::http::methods::POST);
 
@@ -109,14 +147,15 @@ namespace SkybiticaNamespace {
 		request.headers().add(U("x-api-user"), convertToWideString(API_USER));
 		request.headers().add(U("x-api-key"), convertToWideString(API_KEY));
 
-		doRequest(request);
+		web::http::status_code responseStatus = doRequest(request);
+		*/
 	}
 
 	bool RegisterFuncs(VMClassRegistry* registry) {
 		registry->RegisterFunction(
 			new NativeFunction2 <StaticFunctionTag, float, BSFixedString, BSFixedString>("AddQuestToHabitica", "Skybitica", SkybiticaNamespace::AddQuestToHabitica, registry));
 		registry->RegisterFunction(
-			new NativeFunction1 <StaticFunctionTag, void, BSFixedString>("CompleteQuestInHabitica", "Skybitica", SkybiticaNamespace::CompleteQuestInHabitica, registry));
+			new NativeFunction2 <StaticFunctionTag, void, BSFixedString, BSFixedString>("CompleteQuestInHabitica", "Skybitica", SkybiticaNamespace::CompleteQuestInHabitica, registry));
 
 		return true;
 	}
