@@ -44,20 +44,17 @@ void DisplayJSONValue(json::value ISSData)
 				if (key.serialize() == (L"\"timestamp""\""))
 				{
 					std::wcout << L"timestamp found"<< std::endl;
-					// TODO: Save time
-					// currentTime = value.serialize();
+					currentTime = value.as_integer();
 				}
 				else if (key.serialize() == (L"\"longitude""\""))
 				{
-					std::wcout << L"latitude found" << std::endl;
-					// TODO: Save latitude
-					// latitude = value.serialize();
+					std::wcout << L"longitude found" << std::endl;
+					longitude = value.as_double();
 				}
 				else if (key.serialize() == (L"\"latitude""\""))
 				{
 					std::wcout << L"latitude found" << std::endl;
-					// TODO: Save latitude
-					// latitude = value.serialize();
+					latitude = value.as_double();
 				}
 				std::wcout << L"Key: " << key.serialize() << L", Value: " << value.serialize() << std::endl;
 			}
