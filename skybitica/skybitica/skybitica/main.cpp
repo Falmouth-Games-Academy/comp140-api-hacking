@@ -4,6 +4,7 @@
 
 #include "Skybitica.h"
 
+
 static PluginHandle					g_pluginHandle = kPluginHandle_Invalid;
 static SKSEPapyrusInterface         * g_papyrus = NULL;
 

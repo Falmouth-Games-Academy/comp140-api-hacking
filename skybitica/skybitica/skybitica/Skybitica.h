@@ -1,10 +1,12 @@
+#pragma once
 #include "skse/PapyrusNativeFunctions.h"
+#include "HabiticaConnector.h"
 
 namespace SkybiticaNamespace
 {
-	float AddQuestToHabitica(StaticFunctionTag *base, BSFixedString questName, BSFixedString questID);
+	UInt32 AddQuestToHabitica(StaticFunctionTag *base, BSFixedString questName, BSFixedString questID);
 
-	void CompleteQuestInHabitica(StaticFunctionTag *base, BSFixedString questName);
+	UInt32 CompleteQuestInHabitica(StaticFunctionTag *base, BSFixedString questName, BSFixedString questID);
 
 	bool RegisterFuncs(VMClassRegistry* registry);
 }

@@ -117,11 +117,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="HabiticaConnector.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Skybitica.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="tools.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HabiticaConnector.h" />
+    <ClInclude Include="tools.h" />
     <ClInclude Include="keys.h" />
     <ClInclude Include="Skybitica.h" />
     <ClInclude Include="stdafx.h" />
