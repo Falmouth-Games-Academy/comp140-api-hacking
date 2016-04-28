@@ -24,6 +24,7 @@ I've chosen to use [C++ REST SDK](http://casablanca.codeplex.com/) to connect to
 At the end of this sprint the code can connect to the Open Notify API and request the location of the ISS, it then saves that infomation to a html file. In the next sprint I intend to change it to extract the JSON information instead of having to save a file and then go through an external file.
 
 ##Sprint 2:
-![End of sprint 2]()  
+![End of sprint 2](https://raw.githubusercontent.com/MaddieK19/comp140-api-hacking/master/Trello%20boards%20and%20cards/End%20of%20sprint%20two.PNG)  
+The code now makes a request to the API and receives the JSON, it then extracts that data and saves it to a series of variables. I've also intergrated the code into my COMP150 group game and it updates every second and shifts the background depending on the location of the ISS
 
 
