@@ -14,8 +14,8 @@ HabiticaConnector::~HabiticaConnector()
 web::http::status_code HabiticaConnector::doRequest(web::http::http_request request)
 {
 	// Headers for Habitica authentication
-	request.headers().add(U("x-api-user"), convertToWideString(API_USER));
-	request.headers().add(U("x-api-key"), convertToWideString(API_KEY));
+	request.headers().add(U("x-api-user"), API_USER);
+	request.headers().add(U("x-api-key"), API_KEY);
 
 	// Make HTTP request as asynchronous task
 	pplx::task<web::http::status_code> requestTask = client.request(request).then([=](web::http::http_response response)
