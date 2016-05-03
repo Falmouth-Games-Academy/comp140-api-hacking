@@ -5,7 +5,9 @@ import Skybitica
 ; List of all named Skyrim quests defined in Creation Kit
 FormList Property quests auto
 Formlist Property runningQuests auto
+Formlist Property pendingQuests auto
 
+bool upToDate = true
 
 Event OnInit()
 	; Script will run whenever player opens journal
@@ -15,6 +17,23 @@ EndEvent
 Event OnMenuOpen(string menuName)
 	GetRunningQuests()
 	ConnectQuestsToHabitica() 
+EndEvent
+
+Event OnUpdate()
+	Int i = 0
+	While i < pendingQuests.GetSize()
+		Quest pendingQuest = pendingQuests.GetAt(i) as Quest
+		Int response = GetRequestResult(pendingQuest.GetId())
+		If httpRequestSucceeded(response)
+			Debug.Notification("'" + pendingQuest.GetName() + "'" + " successfully updated on Habitica!")
+			runningQuests.RemoveAddedForm(pendingQuest)
+		Else
+			Debug.Notification("'" + pendingQuest.GetName() + "'" + " failed to update on Habitica. Response code: " + response)
+		Endif
+		i += 1
+	EndWhile
+	pendingQuests.Revert()
+	upToDate = true
 EndEvent
 
 Function GetRunningQuests()
@@ -30,48 +49,42 @@ Function GetRunningQuests()
 EndFunction
 
 Function ConnectQuestsToHabitica() 
-	Int i = 0
-	While i < runningQuests.getSize()
-		Quest questToBeChecked = runningQuests.GetAt(i) as Quest
-		string questID = questToBeChecked.GetId()
-		string questname = questToBeChecked.GetName()
-
-		If questToBeChecked.isCompleted()
-			Int response = CompleteQuestInHabitica(questName, questID)
-			If httpRequestSucceeded(response)
-				Debug.Notification("'" + questname + "'" + " complete!")
-				runningQuests.RemoveAddedForm(questToBeChecked)
-			Else
-			Debug.Notification("'" + questname + "'" + " failed to complete on Habitica. Response code: " + response)
+	If upToDate
+		Int i = 0
+		While i < runningQuests.getSize()
+			Quest questToBeChecked = runningQuests.GetAt(i) as Quest
+			If questToBeChecked.isCompleted()
+				CompleteQuestInHabitica(questToBeChecked.GetName(), questToBeChecked.GetId())
+			Elseif questToBeChecked.IsStopped()
+				DeleteQuestInHabitica(questToBeChecked.GetId())
+			Elseif questToBeChecked.IsRunning()
+				AddQuestToHabitica(questToBeChecked.GetName(), questToBeChecked.GetId())
 			Endif
-
-		Elseif questToBeChecked.IsRunning()
-			Int response = AddQuestToHabitica(questName, questID)
-			If httpRequestSucceeded(response)
-				Debug.Notification("'" + questname + "'" + "added to Habitica Todo List!")
-			Else
-				Debug.Notification("'" + questname + "'" + " failed to be added to Habitica. Response code: " + response)
-			Endif
-			
-		Elseif questToBeChecked.IsStopped()
-			Int response = DeleteQuestInHabitica(questID)
-			If httpRequestSucceeded(response)
-				Debug.Notification("'" + questname + "'" + " removed from Habitica Todo List.")
-				runningQuests.RemoveAddedForm(questToBeChecked)
-			Else
-				Debug.Notification("'" + questname + "'" + " failed to be removed from Habitica. Response code: " + response)
-			Endif
-
-		Endif
-		i += 1
-
-	EndWhile
+			pendingQuests.AddForm(runningQuests.GetAt(i))
+			i += 1
+		EndWhile
+		upToDate = false
+		RegisterForSingleUpdate(5)
+	EndIf
 EndFunction
 
-bool Function httpRequestSucceeded(int responseCode)
+bool Function HttpRequestSucceeded(int responseCode)
 	If responseCode == 200
 		return true
 	Else
 		return false
 	Endif
+EndFunction
+
+
+Function SendQuestCompleteRequest(string questName, string questID)
+	(questName, questID)
+EndFunction
+
+Function SendAddQuestRequest(string questName, string questID)
+	(questName, questID)
+EndFunction
+
+Function SendDeleteQuestRequest(string questID)
+	(questID)
 EndFunction

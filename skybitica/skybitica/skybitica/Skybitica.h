@@ -4,9 +4,13 @@
 
 namespace SkybiticaNamespace
 {
-	UInt32 AddQuestToHabitica(StaticFunctionTag *base, BSFixedString questName, BSFixedString questID);
+	void AddQuestToHabitica(StaticFunctionTag *base, BSFixedString questName, BSFixedString questID);
 
-	UInt32 CompleteQuestInHabitica(StaticFunctionTag *base, BSFixedString questName, BSFixedString questID);
+	void CompleteQuestInHabitica(StaticFunctionTag *base, BSFixedString questName, BSFixedString questID);
+
+	void DeleteQuestInHabitica(StaticFunctionTag *base, BSFixedString questID);
+
+	UInt32 GetRequestResult(StaticFunctionTag *base, BSFixedString questID);
 
 	bool RegisterFuncs(VMClassRegistry* registry);
 }

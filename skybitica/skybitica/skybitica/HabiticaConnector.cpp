@@ -11,20 +11,21 @@ HabiticaConnector::~HabiticaConnector()
 {
 }
 
-web::http::status_code HabiticaConnector::doRequest(web::http::http_request request)
+void HabiticaConnector::doRequest(web::http::http_request request, std::wstring taskID)
 {
 	// Headers for Habitica authentication
 	request.headers().add(U("x-api-user"), API_USER);
 	request.headers().add(U("x-api-key"), API_KEY);
 
 	// Make HTTP request as asynchronous task
-	requestTask = client.request(request).then([=](web::http::http_response response)
+	pplx::task<web::http::status_code> requestTask = client.request(request).then([=](web::http::http_response response)
 	{
 		_MESSAGE("Received response status code:%u\n", response.status_code());
-		return response.status_code();
+		finishedRequestTasks[taskID] = response.status_code();
+        return response.status_code();
 	});
 
-	// Wait for all the outstanding I/O to complete and handle any exceptions
+	/*// Wait for all the outstanding I/O to complete and handle any exceptions
 	try
 	{
 		requestTask.wait();
@@ -32,9 +33,7 @@ web::http::status_code HabiticaConnector::doRequest(web::http::http_request requ
 	catch (const std::exception &e)
 	{
 		_MESSAGE("Error exception:%s\n", e.what());
-	}
-
-	return requestTask.get();
+	}*/
 }
 
 web::json::value HabiticaConnector::createTaskBody(std::wstring taskName, std::wstring taskID)
@@ -59,36 +58,14 @@ web::json::value HabiticaConnector::createTaskBody(std::wstring taskName, std::w
 	return jsonObject;
 }
 
-bool HabiticaConnector::taskExists(std::wstring questID)
+web::http::status_code HabiticaConnector::getResult(std::wstring taskID)
 {
-	web::uri_builder requestUri = baseUri;
-	requestUri.append(questID);
-
-	web::http::http_request request(web::http::methods::GET);
-	request.set_request_uri(requestUri.to_string());
-
-	web::http::status_code responseStatus = doRequest(request);
-
-	if (responseStatus == 200)
-	{
-		_MESSAGE("Task exists");
-		return true;
-	}
-	else
-	{
-		_MESSAGE("Task doesn't exist");
-		return false;
-	}
+	_MESSAGE("Received response status code task blah:%u\n", finishedRequestTasks[taskID]);
+	return finishedRequestTasks[taskID];
 }
 
-bool HabiticaConnector::requestTaskDone()
+void HabiticaConnector::addTask(std::wstring taskName, std::wstring taskID)
 {
-	return requestTask.is_done();
-}
-
-web::http::status_code HabiticaConnector::addTask(std::wstring taskName, std::wstring taskID)
-{
-	_MESSAGE("AddQuest() will return %f", 3.3);
 	web::json::value task = createTaskBody(taskName, taskID);
 
 	// Create request with POST protocol
@@ -96,17 +73,11 @@ web::http::status_code HabiticaConnector::addTask(std::wstring taskName, std::ws
 	request.set_request_uri(baseUri.to_string());
 	request.set_body(task);
 
-	web::http::status_code responseStatus = doRequest(request);
-	return responseStatus;
+	doRequest(request, taskID);
 } 
 
-web::http::status_code HabiticaConnector::completeTask(std::wstring taskName, std::wstring taskID)
+void HabiticaConnector::completeTask(std::wstring taskName, std::wstring taskID)
 {
-	if (!taskExists(taskID))
-	{
-		addTask(taskName, taskID);
-	}
-
 	// Create request with POST protocol
 	web::http::http_request request(web::http::methods::POST);
 
@@ -116,12 +87,11 @@ web::http::status_code HabiticaConnector::completeTask(std::wstring taskName, st
 	requestUri.append(U("/up"));	//Completes the Habitica Todo
 	request.set_request_uri(requestUri.to_string());
 
-	web::http::status_code responseStatus = doRequest(request);
-	return responseStatus;
+	doRequest(request, taskID);
 }
 
 
-web::http::status_code HabiticaConnector::deleteTask(std::wstring taskID)
+void HabiticaConnector::deleteTask(std::wstring taskID)
 {
 	// Create request with DELETE protocol
 	web::http::http_request request(web::http::methods::DEL);
@@ -129,6 +99,5 @@ web::http::status_code HabiticaConnector::deleteTask(std::wstring taskID)
 	web::uri_builder requestUri = baseUri;
 	requestUri.append(taskID);
 	request.set_request_uri(requestUri.to_string());
-	web::http::status_code responseStatus = doRequest(request);
-	return responseStatus;
+	doRequest(request, taskID);
 }

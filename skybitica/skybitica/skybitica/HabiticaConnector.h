@@ -11,18 +11,18 @@ class HabiticaConnector
 public:
 	HabiticaConnector();
 	~HabiticaConnector();
-	web::http::status_code addTask(std::wstring taskName, std::wstring taskID);
-	web::http::status_code completeTask(std::wstring taskName, std::wstring taskID);
-	web::http::status_code deleteTask(std::wstring taskID);
-	bool requestTaskDone();
+	void addTask(std::wstring taskName, std::wstring taskID);
+	void completeTask(std::wstring taskName, std::wstring taskID);
+	void deleteTask(std::wstring taskID);
+	web::http::status_code getResult(std::wstring taskID);
 
 private:
 	web::uri_builder baseUri;
 	web::http::client::http_client client; 
 	
-	web::http::status_code doRequest(web::http::http_request request);
+	void doRequest(web::http::http_request request, std::wstring taskID);
 	web::json::value createTaskBody(std::wstring taskName, std::wstring taskID);
-	bool taskExists(std::wstring taskID);
-	pplx::task<web::http::status_code> requestTask;
+
+	std::map<std::wstring, web::http::status_code> finishedRequestTasks;
 };
 
