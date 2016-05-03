@@ -14,7 +14,7 @@ EndEvent
 
 Event OnMenuOpen(string menuName)
 	GetRunningQuests()
-	ConnectQuestsToHabitica()
+	ConnectQuestsToHabitica() 
 EndEvent
 
 Function GetRunningQuests()
@@ -22,14 +22,14 @@ Function GetRunningQuests()
 	While i < quests.GetSize()
 		Quest questToBeChecked = quests.GetAt(i) as Quest
 		If questToBeChecked.IsRunning() && !questToBeChecked.IsCompleted()
-			; Duplicate forms aren't added automatically
+			; Duplicate forms already aren't added automatically
 			runningQuests.AddForm(quests.GetAt(i))
 		Endif
 		i += 1
 	EndWhile
 EndFunction
 
-Function ConnectQuestsToHabitica()
+Function ConnectQuestsToHabitica() 
 	Int i = 0
 	While i < runningQuests.getSize()
 		Quest questToBeChecked = runningQuests.GetAt(i) as Quest
@@ -37,17 +37,41 @@ Function ConnectQuestsToHabitica()
 		string questname = questToBeChecked.GetName()
 
 		If questToBeChecked.isCompleted()
-			Debug.Notification("'" + questname + "'" + "complete!")
-			Debug.Notification(CompleteQuestInHabitica(questName, questID))
-			runningQuests.RemoveAddedForm(questToBeChecked)
+			Int response = CompleteQuestInHabitica(questName, questID)
+			If httpRequestSucceeded(response)
+				Debug.Notification("'" + questname + "'" + " complete!")
+				runningQuests.RemoveAddedForm(questToBeChecked)
+			Else
+			Debug.Notification("'" + questname + "'" + " failed to complete on Habitica. Response code: " + response)
+			Endif
+
 		Elseif questToBeChecked.IsRunning()
-			Debug.Notification(AddQuestToHabitica(questName, questID))
-			Debug.Notification("'" + questname + "'" + "added to Habitica Todo List!")
-			AddQuestToHabitica(questName, questID)
+			Int response = AddQuestToHabitica(questName, questID)
+			If httpRequestSucceeded(response)
+				Debug.Notification("'" + questname + "'" + "added to Habitica Todo List!")
+			Else
+				Debug.Notification("'" + questname + "'" + " failed to be added to Habitica. Response code: " + response)
+			Endif
+			
 		Elseif questToBeChecked.IsStopped()
-			; delete from habitica
+			Int response = DeleteQuestInHabitica(questID)
+			If httpRequestSucceeded(response)
+				Debug.Notification("'" + questname + "'" + " removed from Habitica Todo List.")
+				runningQuests.RemoveAddedForm(questToBeChecked)
+			Else
+				Debug.Notification("'" + questname + "'" + " failed to be removed from Habitica. Response code: " + response)
+			Endif
+
 		Endif
 		i += 1
 
 	EndWhile
+EndFunction
+
+bool Function httpRequestSucceeded(int responseCode)
+	If responseCode == 200
+		return true
+	Else
+		return false
+	Endif
 EndFunction
