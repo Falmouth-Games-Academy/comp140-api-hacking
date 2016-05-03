@@ -14,11 +14,18 @@ namespace SkybiticaNamespace {
 		return  habiticaConnector.completeTask(convertToWideString(questName.data), convertToWideString(questID.data));
 	}
 
+	bool HabiticaRequestDone(StaticFunctionTag *base)
+	{
+		return habiticaConnector.requestTaskDone();
+	}
+
 	bool RegisterFuncs(VMClassRegistry* registry) {
 		registry->RegisterFunction(
 			new NativeFunction2 <StaticFunctionTag, UInt32, BSFixedString, BSFixedString>("AddQuestToHabitica", "Skybitica", SkybiticaNamespace::AddQuestToHabitica, registry));
 		registry->RegisterFunction(
 			new NativeFunction2 <StaticFunctionTag, UInt32, BSFixedString, BSFixedString>("CompleteQuestInHabitica", "Skybitica", SkybiticaNamespace::CompleteQuestInHabitica, registry));
+		registry->RegisterFunction(
+			new NativeFunction0 <StaticFunctionTag, bool>("HabiticaRequestDone", "Skybitica", SkybiticaNamespace::HabiticaRequestDone, registry));
 
 		return true;
 	}

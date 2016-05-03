@@ -13,6 +13,7 @@ public:
 	~HabiticaConnector();
 	web::http::status_code addTask(std::wstring taskName, std::wstring taskID);
 	web::http::status_code completeTask(std::wstring taskName, std::wstring taskID);
+	bool requestTaskDone();
 
 private:
 	web::uri_builder baseUri;
@@ -21,5 +22,6 @@ private:
 	web::http::status_code doRequest(web::http::http_request request);
 	web::json::value createTaskBody(std::wstring taskName, std::wstring taskID);
 	bool taskExists(std::wstring taskID);
+	pplx::task<web::http::status_code> requestTask;
 };
 

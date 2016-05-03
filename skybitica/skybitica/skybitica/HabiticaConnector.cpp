@@ -18,7 +18,7 @@ web::http::status_code HabiticaConnector::doRequest(web::http::http_request requ
 	request.headers().add(U("x-api-key"), API_KEY);
 
 	// Make HTTP request as asynchronous task
-	pplx::task<web::http::status_code> requestTask = client.request(request).then([=](web::http::http_response response)
+	requestTask = client.request(request).then([=](web::http::http_response response)
 	{
 		_MESSAGE("Received response status code:%u\n", response.status_code());
 		return response.status_code();
@@ -81,6 +81,11 @@ bool HabiticaConnector::taskExists(std::wstring questID)
 	}
 }
 
+bool HabiticaConnector::requestTaskDone()
+{
+	return requestTask.is_done();
+}
+
 web::http::status_code HabiticaConnector::addTask(std::wstring taskName, std::wstring taskID)
 {
 	_MESSAGE("AddQuest() will return %f", 3.3);
@@ -93,7 +98,7 @@ web::http::status_code HabiticaConnector::addTask(std::wstring taskName, std::ws
 
 	web::http::status_code responseStatus = doRequest(request);
 	return responseStatus;
-}
+} 
 
 web::http::status_code HabiticaConnector::completeTask(std::wstring taskName, std::wstring taskID)
 {
