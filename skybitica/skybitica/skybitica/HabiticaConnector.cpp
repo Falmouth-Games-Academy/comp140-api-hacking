@@ -121,3 +121,14 @@ web::http::status_code HabiticaConnector::completeTask(std::wstring taskName, st
 }
 
 
+web::http::status_code HabiticaConnector::deleteTask(std::wstring taskID)
+{
+	// Create request with DELETE protocol
+	web::http::http_request request(web::http::methods::DEL);
+	
+	web::uri_builder requestUri = baseUri;
+	requestUri.append(taskID);
+	request.set_request_uri(requestUri.to_string());
+	web::http::status_code responseStatus = doRequest(request);
+	return responseStatus;
+}

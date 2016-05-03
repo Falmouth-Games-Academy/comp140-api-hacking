@@ -14,6 +14,11 @@ namespace SkybiticaNamespace {
 		return  habiticaConnector.completeTask(convertToWideString(questName.data), convertToWideString(questID.data));
 	}
 
+	UInt32 DeleteQuestInHabitica(StaticFunctionTag *base, BSFixedString questID)
+	{
+		return  habiticaConnector.deleteTask(convertToWideString(questID.data));
+	}
+
 	bool HabiticaRequestDone(StaticFunctionTag *base)
 	{
 		return habiticaConnector.requestTaskDone();
@@ -24,6 +29,8 @@ namespace SkybiticaNamespace {
 			new NativeFunction2 <StaticFunctionTag, UInt32, BSFixedString, BSFixedString>("AddQuestToHabitica", "Skybitica", SkybiticaNamespace::AddQuestToHabitica, registry));
 		registry->RegisterFunction(
 			new NativeFunction2 <StaticFunctionTag, UInt32, BSFixedString, BSFixedString>("CompleteQuestInHabitica", "Skybitica", SkybiticaNamespace::CompleteQuestInHabitica, registry));
+		registry->RegisterFunction(
+			new NativeFunction1 <StaticFunctionTag, UInt32, BSFixedString>("DeleteQuestInHabitica", "Skybitica", SkybiticaNamespace::DeleteQuestInHabitica, registry));
 		registry->RegisterFunction(
 			new NativeFunction0 <StaticFunctionTag, bool>("HabiticaRequestDone", "Skybitica", SkybiticaNamespace::HabiticaRequestDone, registry));
 

@@ -13,6 +13,7 @@ public:
 	~HabiticaConnector();
 	web::http::status_code addTask(std::wstring taskName, std::wstring taskID);
 	web::http::status_code completeTask(std::wstring taskName, std::wstring taskID);
+	web::http::status_code deleteTask(std::wstring taskID);
 	bool requestTaskDone();
 
 private:
