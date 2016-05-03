@@ -5,6 +5,9 @@
 #include "Skybitica.h"
 
 
+
+// Code in this file is not mine - it's from https://github.com/xanderdunn/skaar/releases/tag/plugin3
+
 static PluginHandle					g_pluginHandle = kPluginHandle_Invalid;
 static SKSEPapyrusInterface         * g_papyrus = NULL;
 

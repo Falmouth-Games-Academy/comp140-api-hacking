@@ -24,16 +24,6 @@ void HabiticaConnector::doRequest(web::http::http_request request, std::wstring 
 		finishedRequestTasks[taskID] = response.status_code();
         return response.status_code();
 	});
-
-	/*// Wait for all the outstanding I/O to complete and handle any exceptions
-	try
-	{
-		requestTask.wait();
-	}
-	catch (const std::exception &e)
-	{
-		_MESSAGE("Error exception:%s\n", e.what());
-	}*/
 }
 
 web::json::value HabiticaConnector::createTaskBody(std::wstring taskName, std::wstring taskID)

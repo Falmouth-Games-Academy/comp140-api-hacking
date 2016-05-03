@@ -27,7 +27,7 @@ Event OnUpdate()
 		If httpRequestSucceeded(response)
 			Debug.Notification("'" + pendingQuest.GetName() + "'" + " successfully updated on Habitica!")
 			runningQuests.RemoveAddedForm(pendingQuest)
-		Else
+		ElseIf !AlreadyOnTodoList(response)
 			Debug.Notification("'" + pendingQuest.GetName() + "'" + " failed to update on Habitica. Response code: " + response)
 		Endif
 		i += 1
@@ -55,16 +55,19 @@ Function ConnectQuestsToHabitica()
 			Quest questToBeChecked = runningQuests.GetAt(i) as Quest
 			If questToBeChecked.isCompleted()
 				CompleteQuestInHabitica(questToBeChecked.GetName(), questToBeChecked.GetId())
+
 			Elseif questToBeChecked.IsStopped()
 				DeleteQuestInHabitica(questToBeChecked.GetId())
+
 			Elseif questToBeChecked.IsRunning()
 				AddQuestToHabitica(questToBeChecked.GetName(), questToBeChecked.GetId())
 			Endif
+
 			pendingQuests.AddForm(runningQuests.GetAt(i))
 			i += 1
 		EndWhile
 		upToDate = false
-		RegisterForSingleUpdate(5)
+		RegisterForSingleUpdate(10)	
 	EndIf
 EndFunction
 
@@ -76,15 +79,10 @@ bool Function HttpRequestSucceeded(int responseCode)
 	Endif
 EndFunction
 
-
-Function SendQuestCompleteRequest(string questName, string questID)
-	(questName, questID)
-EndFunction
-
-Function SendAddQuestRequest(string questName, string questID)
-	(questName, questID)
-EndFunction
-
-Function SendDeleteQuestRequest(string questID)
-	(questID)
+bool Function AlreadyOnTodoList(int responseCode)
+	If responseCode == 409
+		return true
+	Else
+		return false
+	Endif
 EndFunction
