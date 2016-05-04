@@ -18,3 +18,20 @@ Perhaps as a stretch goal, the custom rewards on habitica could correspond to in
 ##Sources used
 
 The template for the Visual Studio project and main.cpp of my SKSE plugin that I used can be found [here](https://github.com/xanderdunn/skaar/releases/tag/plugin3). I used [this](https://github.com/xanderdunn/skaar/wiki/SKSE%3A-Getting-Started) tutorial and that Visual Studio solution to get started.
+
+
+
+## Trello Board
+Things in the 'Review' column are what was completed in the named sprint, things in the 'To do' column are things for the next sprint. I broke the two sprints down into smaller sections, for purposes of time management.
+### Label Key
+![Labels]()
+
+### Sprint 1
+![Sprint 1](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Trello/Sprint%201.png)
+
+### Sprint 1.5
+![Sprint 1.5](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Trello/Sprint%201.5.png)
+
+
+### Sprint 2
+![Sprint 2](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Trello/Sprint%202.png)
