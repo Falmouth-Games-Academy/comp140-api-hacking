@@ -11,6 +11,16 @@ I intend to create a plugin for Skyrim that uses the [Habitica API](https://habi
 
 Perhaps as a stretch goal, the custom rewards on habitica could correspond to in-game Skyrim items, so that they appear in the inventory when bought using Habitica's reward system...  
 
+###Justification for technologies used
+####C++ REST SDK
+I chose C++ REST SDK as it is made by Microsoft especially for C++, is fully featured, easy to add to Visual Studio and has comprehensive documentation. Alternatives such as [cURLpp](http://www.curlpp.org/) were an option, but on further research it became evident that a long and complicated process is involved in getting it to work with Visual Studio.
+
+####Skyrim Script Extender (SKSE)
+Skyrim has a robust modding community and well established modding tools. Skyrim script extender is widely used by the modding community to access additional functions in Papyrus, as well as adding their own custom functions to Papyrus. It makes sense to use SKSE to create my plugin that makes HTTP requests to Habitica, otherwise it would involve disassembling the Skyrim code myself or using less established tools.
+
+####Habitica API
+I chose Habitica as the API to use as the Habitica app is a core part of my design. The Habitica API is well documented and easily accessible. One downside is that it does not support OAuth, so all requests need to include an API-user and API-token, making things created using it less user-friendly.
+
 
 ##Sources used
 
