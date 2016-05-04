@@ -1,92 +1,101 @@
-scriptId = 'com.jakechapeskie.solidworks'
-minMyoConnectVersion ='0.8.0'
-scriptDetailsUrl = 'https://github.com/JakeChapeskie/MyoScripts'
-scriptTitle = 'SolidWorks Connector'
+scriptId = ''
+minMyoConnectVersion ='0.2.0'
+scriptDetailsUrl = 'https://github.com/James120393/comp140-api-hacking/edit/master/Program/Mouse.lua'
+scriptTitle = 'MYO Controller'
 
---Commands
---"waveIn" hold to zoom while moving arm
---"waveOut" hold to move while moving arm
---"fingersSpread" hold to rotate
---"doubleTap" toggle unlock
---"fist" hold to left click
---Minimum SDK of Beta8 Required.
+    LOCK_THRESHOLD = 800  
+    timeSinceLastPose = 0
 
---Helper Functions
-function conditionallySwapWave(pose)
-    if myo.getArm() == "left" then
-        if pose == "waveIn" then
-            pose = "waveOut"
-        elseif pose == "waveOut" then
-            pose = "waveIn"
+    description = [[  
+    Mouse Control Script
+
+    Control the mouse with your Myo armband!
+    Plus move forward and back in a game.
+    
+    This code was inspired but Thalmic labs Developer Blog URL::http://developerblog.myo.com/myocraft-mouse-control/
+
+    ]]
+    controls = [[  
+    Controls:  
+     - Move arm to control mouse
+     - Fist to left click
+     - Fingers spread to right click
+     - Wave in to Move Forward
+     - Wave out to Move Back
+     - Double tap to enable or disable cursor control
+     ]]
+
+
+    function notifyUser(edge)  
+        if (edge == "down") then
+            myo.notifyUserAction()
         end
     end
-    return pose
-end
 
--- Locking Functions
+    function leftClick(edge)  
+        notifyUser(edge)
+        myo.mouse("left",edge)
+    end
 
--- Set how the Myo Armband handles locking
-myo.setLockingPolicy("none")
+    function rightClick(edge)  
+        notifyUser(edge)
+        myo.mouse("right",edge)
+    end
 
-function onLock()
-    myo.controlMouse(false)
-end
+    function forward(edge)  
+        notifyUser(edge)
+        myo.keyboard("w",edge)
+    end
 
-function onUnlock()
-    myo.controlMouse(true)
-end
+    function back(edge)  
+        notifyUser(edge)
+        myo.keyboard("s",edge)
+    end
 
-function unLatch()
-    --myo.mouse("left","click")
-end
-
-function onPoseEdge(pose, edge)
-    local now = myo.getTimeMilliseconds()
-
-    pose = conditionallySwapWave(pose)
-    if pose == "unknown" then
-        if myo.isUnlocked() then
+    function lockMyo(edge)  
+        if (myo.getTimeMilliseconds() - timeSinceLastPose > LOCK_THRESHOLD) then
+            myo.controlMouse(false)
             myo.lock()
-        else
-            myo.unlock("hold")
         end
     end
 
-    if edge == "on" and  myo.isUnlocked() then
-        if pose == "fist" and enabled then
-            myo.mouse("left","down")
-        elseif pose == "waveIn" and enabled then
-            myo.keyboard("f1","down")
-        elseif pose == "waveOut" and enabled then
-            myo.keyboard("f2","down")
-        elseif pose == "fingersSpread" and enabled  then
-            myo.mouse("right","click")
-		elseif pose == "doubleTap" and enabled then
-			myo.mouse("left", "click")
-        end
-   -- elseif edge == "off" then
-       -- unLatch()
-    end
-end
+     STANDARD_BINDINGS = {
+        fist            = leftClick,
+        fingersSpread   = rightClick,
+        waveOut         = forward,
+        wavein          = back,
+        doubleTap       = lockMyo
+    }
+    --STANDARD_BINDINGS = true
 
--- onPeriodic runs every ~10ms
-function onPeriodic()
-    --empty
-end
---When window becomes and releases activation
-function onActiveChange(isActive)
-    if isActive then
-        enabled = true
-        myo.controlMouse(true)
-    else
-        enabled = false
-        myo.controlMouse(false)
-        unLatch()
-    end
-end
--- Only activate when using SolidWorks
-function onForegroundWindowChange(app, title)
-    if string.match(title, "StarCraft II") then
+    bindings = STANDARD_BINDINGS
+
+    function onForegroundWindowChange(app, title)  
+
         return true
+
+
     end
-end
+
+    function activeAppName()  
+        return scriptTitle
+    end
+
+    function onUnlock()  
+        myo.unlock("hold")
+        myo.controlMouse(true)
+    end
+
+    function onPoseEdge(pose, edge)  
+        --pose = conditionallySwapWave(pose)
+        --myo.debug("onPoseEdge: " .. pose .. ": " .. edge)
+        fn = bindings[pose]
+        if fn then
+            keyEdge = edge == "off" and "up" or "down"
+            fn(keyEdge)
+        end
+
+        if (pose ~= "rest" and edge == "off") then
+            timeSinceLastPose = myo.getTimeMilliseconds()
+        end
+    end
