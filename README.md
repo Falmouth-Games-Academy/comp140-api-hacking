@@ -12,15 +12,24 @@ I intend to create a plugin for Skyrim that uses the [Habitica API](https://habi
 Perhaps as a stretch goal, the custom rewards on habitica could correspond to in-game Skyrim items, so that they appear in the inventory when bought using Habitica's reward system...  
 
 ###Justification for technologies used
-####C++ REST SDK
+
+####APIs
+#####C++ REST SDK
 I chose C++ REST SDK as it is made by Microsoft especially for C++, is fully featured, easy to add to Visual Studio and has comprehensive documentation. Alternatives such as [cURLpp](http://www.curlpp.org/) were an option, but on further research it became evident that a long and complicated process is involved in getting it to work with Visual Studio.
 
-####Skyrim Script Extender (SKSE)
+#####Skyrim Script Extender (SKSE)
 Skyrim has a robust modding community and well established modding tools. Skyrim script extender is widely used by the modding community to access additional functions in Papyrus, as well as adding their own custom functions to Papyrus. It makes sense to use SKSE to create my plugin that makes HTTP requests to Habitica, otherwise it would involve disassembling the Skyrim code myself or using less established tools.
+One disadvantage is that there is not much documentation about how to use SKSE and make plugins for it. I managed to find one tutorial, however. That, combined with lots of googling and looking on forums, allowed me to see how to get started. This made me see that it's actually very easy to get a SKSE plugin to work with Papyrus and into the game.
 
-####Habitica API
-I chose Habitica as the API to use as the Habitica app is a core part of my design. The Habitica API is well documented and easily accessible. One downside is that it does not support OAuth, so all requests need to include an API-user and API-token, making things created using it less user-friendly.
+#####Habitica API
+I chose Habitica as the API to use as the Habitica app is a core part of my design. The Habitica API is well documented and easily accessible. One downside is that it does not support OAuth, so all requests need to include an API-user and API-token, making things created using it less flexible and user-friendly.
 
+####Programming Languages
+#####C++
+C++ is the language used to create SKSE plugins. There is also a tutorial that provides a template Visusal Studio project, which provides a starting point for making a SKSE plugin in C++.
+
+#####Papyrus and Skyrim Creation Kit
+The easiest way to make a plugin for Skyrim is to use the Skyrim Creation Kit. Papyrus is the language used for scripting in Skyrim Creation Kit. If I am to use Skyrim Creation Kit to create a Skyrim plugin, I will have to use Papyrus. An huge advantage of using Papyrus alongside the Skyrim Creation Kit, is that it provides functions for interacting with objects in the game and retrieving data from the game. The use of the Creation Kit and Skyrim-specific Papyrus functions (include SKSE functions) are very well documented on the [Creation Kit wiki](http://www.creationkit.com/index.php?title=Main_Page).
 
 ##Sources used
 
