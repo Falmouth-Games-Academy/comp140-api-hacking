@@ -1,6 +1,9 @@
 # API Hacking
 This is the base repository for the COMP140 API Hacking assignment.
 
+The API Hacking Code folder contains a console application that can request the data from Open Notify and save it to variables.  
+API Code in COMP150 is the code from the console application intergrated into the COMP150 game. Neither will run without the C++ REST SDK package installed.
+
 NB: this repository current does not contain a `.gitignore` file. I recommend you use https://www.gitignore.io to generate an appropriate `.gitignore` file for your choice of implementation language and development environment.
 
 ## Proposal
