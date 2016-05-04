@@ -1,7 +1,4 @@
-# API Hacking
-This is the base repository for the COMP140 API Hacking assignment.
-
-NB: this repository current does not contain a `.gitignore` file. I recommend you use https://www.gitignore.io to generate an appropriate `.gitignore` file for your choice of implementation language and development environment.
+# COMP140 - API Hacking
 
 ## Proposal
 
@@ -22,17 +19,17 @@ The template for the Visual Studio project, including everything in main.cpp of 
 
 
 
-## Trello Board
+### Trello Board
 Things in the 'Review' column are what was completed in the named sprint, things in the 'To do' column are things for the next sprint. I broke the two sprints down into smaller sections, for purposes of time management.
-### Label Key
+#### Label Key
 ![Labels]()
 
-### Sprint 1
+#### Sprint 1
 ![Sprint 1](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Trello/Sprint%201.png)
 
-### Sprint 1.5
+#### Sprint 1.5
 ![Sprint 1.5](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Trello/Sprint%201.5.png)
 
 
-### Sprint 2
+#### Sprint 2
 ![Sprint 2](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Trello/Sprint%202.png)
