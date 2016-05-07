@@ -5,8 +5,10 @@ This is the base repository for the COMP140 API Hacking assignment.
 ####Requires C++ REST SDK to run which can be [installed through NuGet in Visual Studio](https://github.com/Microsoft/cpprestsdk/wiki/Getting-Started-Tutorial)
 
 The API Hacking Code folder contains a console application that can request the data from Open Notify and store it in variables.  
-API Code in COMP150 is the code from the console application integrated into the COMP150 game.  
+API Code in COMP150 is the code from the console application integrated into the COMP150 game. When running in debug the character movement lags when the ISS location is being updated however this issue doesn't appear when it runs in Release.
 Neither will run without the C++ REST SDK package installed.
+
+
 
 ## Proposal
 The component I intend to make will be for the COMP150 game. It will move the background in the game depending on the location of the International Space Station.  
