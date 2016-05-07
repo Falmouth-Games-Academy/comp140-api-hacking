@@ -6,7 +6,7 @@ public:
 	~ISSLocation();
 
 
-	int updateTime =0, previousUpdateTime=0;
+	int updateTime =0, previousUpdateTime=0, windowWidth = 800, windowHeight = 800;
 	double longitude, latitude;
 	double backgroundXPos = 400, backgroundYPos = 400;
 	

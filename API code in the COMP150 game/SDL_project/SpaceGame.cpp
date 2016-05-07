@@ -57,6 +57,8 @@ void SpaceGame::run()
 	MainCharacter characterOne;
 
 	ISSLocation location;
+	location.windowHeight = WINDOW_HEIGHT;
+	location.windowWidth = WINDOW_WIDTH;
 	location.requestJSONValueAsync().wait(); //Runs once in the set up to get a previous update time
 	location.update(); //Sets x and y position of background
 
