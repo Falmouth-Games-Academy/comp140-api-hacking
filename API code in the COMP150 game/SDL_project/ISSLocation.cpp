@@ -45,14 +45,17 @@ void ISSLocation::displayJSONValue(web::json::value ISSData)
 				if (key.serialize() == (L"\"timestamp""\""))
 				{
 					updateTime = value.as_integer();
+					// Stores the current time to be used to decide when to update again
 				}
 				else if (key.serialize() == (L"\"longitude""\""))
 				{
 					longitude = value.as_double();
+					// stores the longitude
 				}
 				else if (key.serialize() == (L"\"latitude""\""))
 				{
 					latitude = value.as_double();
+					// stores the latitude
 				}
 			}
 		}
@@ -76,7 +79,7 @@ pplx::task<void> ISSLocation::requestJSONValueAsync()
 		try
 		{
 			const json::value& issLocation = previousTask.get();
-			// JSON object
+			// issLocation is a JSON object
 			displayJSONValue(issLocation);
 		}
 		catch (const http_exception& e)
@@ -91,7 +94,7 @@ pplx::task<void> ISSLocation::requestJSONValueAsync()
 
 void ISSLocation::update()
 {
-	if (updateTime > previousUpdateTime + 30)
+	if (updateTime > previousUpdateTime + 30)  // Only runs every 30 frames to prevent the game from lagging
 	{// Currently updates location
 		previousUpdateTime = updateTime;
 		requestJSONValueAsync().wait();
