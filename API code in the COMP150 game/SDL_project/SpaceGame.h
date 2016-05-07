@@ -12,11 +12,7 @@ public:
 	SpaceGame();
 	~SpaceGame();
 
-	bool getCellState(int x, int y, int cellSize, std::vector<std::vector<std::shared_ptr<Cell>>> grid);
-
-	void run();
-
-	
+	void run();	
 	static const int WINDOW_WIDTH = 800;
 	static const int WINDOW_HEIGHT = 800;
 
@@ -30,6 +26,10 @@ private:
 	Texture doorTexture;
 	Texture earth;
 	Texture background;
+	Texture background2;
+	Texture background3;
+
+
 
 	bool running;
 

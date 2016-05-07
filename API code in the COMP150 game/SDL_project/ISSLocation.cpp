@@ -98,8 +98,8 @@ void ISSLocation::update()
 	{// Currently updates location
 		previousUpdateTime = updateTime;
 		requestJSONValueAsync().wait();
-		backgroundXPos = ((latitude / 90) * windowHeight) + 1000;
-		backgroundYPos = ((longitude / 180) * windowWidth) + 1000;
+		backgroundXPos = ((latitude / 90) * windowHeight) + 500;
+		backgroundYPos = ((longitude / 180) * windowWidth) + 500;
 
 	}
 	updateTime = updateTime + 1;
