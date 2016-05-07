@@ -159,29 +159,43 @@
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="CharacterState.h" />
     <ClInclude Include="GameConfiguration.h" />
+    <ClInclude Include="DeadState.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="IdleState.h" />
     <ClInclude Include="InitialisationError.h" />
     <ClInclude Include="ISSLocation.h" />
+    <ClInclude Include="LowOxygenState.h" />
     <ClInclude Include="MainCharacter.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="OnFire.h" />
     <ClInclude Include="Oxygen.h" />
+    <ClInclude Include="PlayerControlledState.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SDL_project.h" />
     <ClInclude Include="SpaceGame.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SubCharacter.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="WanderingState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="CharacterState.cpp" />
+    <ClCompile Include="DeadState.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="InitialisationError.cpp" />
     <ClCompile Include="ISSLocation.cpp" />
+    <ClCompile Include="LowOxygenState.cpp" />
     <ClCompile Include="MainCharacter.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="OnFire.cpp" />
     <ClCompile Include="Oxygen.cpp" />
+    <ClCompile Include="PlayerControlledState.cpp" />
     <ClCompile Include="SDL_project.cpp" />
     <ClCompile Include="SpaceGame.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -190,7 +204,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SubCharacter.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="WanderingState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SDL_project.rc" />

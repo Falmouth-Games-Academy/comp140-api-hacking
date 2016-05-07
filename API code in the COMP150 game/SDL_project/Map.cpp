@@ -1,10 +1,6 @@
 #include "stdafx.h"
 #include "Map.h"
 
-/*
- TODO:Get the map from file and loads it into the grid system
-*/
-
 void Map::LoadMap(std::string filename, Grid room)
 //(filename, grid to load into) loads map from text file into grid
 {
@@ -30,6 +26,11 @@ void Map::LoadMap(std::string filename, Grid room)
 				if (map[x][y] == '#')
 				{
 					room.grid[x][y]->isRoom = false;
+				}
+				else if (map[x][y] == 'D')
+				{
+					room.grid[x][y]->isDoor = true;
+					room.grid[x][y]->isRoom = true;
 				}
 			}
 			//closes off smaller levels
