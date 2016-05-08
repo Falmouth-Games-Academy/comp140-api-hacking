@@ -1,5 +1,9 @@
 # COMP140 - API Hacking
 
+## Installation Instructions
+To add the mod to Skyrim, simply copy the "Data" folder in this repository into your Skyrim folder. All the correct files should end up in the right places.
+Then activate the mod with a mod manager for Skyrim.
+
 ## Proposal
 
 Skyrim is a game where you can procrastinate about doing quests, ending up with a backlog hundreds of quests in your journal... This plugin will give the player an extra incentive to get those quests done! Essentially, gamifying a game mechanic of a game using an app that gamifies real life...! o.O  
@@ -38,7 +42,7 @@ The template for the Visual Studio project, including everything in main.cpp of 
 
 
 
-### Trello Board
+## Trello Board
 Things in the 'Review' column are what was completed in the named sprint, things in the 'To do' column are things for the next sprint. I broke the two sprints down into smaller sections, for purposes of time management.
 #### Label Key
 ![Labels]()
