@@ -4,6 +4,16 @@
 To add the mod to Skyrim, simply copy the "Data" folder in this repository into your Skyrim folder. All the correct files should end up in the right places.
 Then activate the mod with a mod manager for Skyrim.
 
+##Structure
+There are two main areas of code - the SKSE plugin written in C++, and the Skyrim Creation Kit script written in Papyrus.  
+The SKSE plugin code can be found in the [Skybitica Visual Studio Project Folder](https://github.com/NecroReindeer/comp140-api-hacking/tree/master/skybitica/skybitica/skybitica).  
+The Papyrus script can be found in [Data/scripts/source/zQuestLooper.psc](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Data/scripts/source/zQuestLooper.psc).  
+All code in zQuestLooper.psc is written by me, and all code for the SKSE plugin is written by me, EXCEPT for the code in main.cpp, tools.cpp and the the function RegisterFuncs in skybitica.cpp. Sources noted below and in the code.
+
+##Sources used
+
+The template for the Visual Studio project, including everything in main.cpp of my SKSE plugin that I used is from [here](https://github.com/xanderdunn/skaar/releases/tag/plugin3). I used [this](https://github.com/xanderdunn/skaar/wiki/SKSE%3A-Getting-Started) tutorial and that Visual Studio solution to get started.
+
 ## Proposal
 
 Skyrim is a game where you can procrastinate about doing quests, ending up with a backlog hundreds of quests in your journal... This plugin will give the player an extra incentive to get those quests done! Essentially, gamifying a game mechanic of a game using an app that gamifies real life...! o.O  
@@ -34,13 +44,6 @@ C++ is the language used to create SKSE plugins. There is also a tutorial that p
 
 #####Papyrus and Skyrim Creation Kit
 The easiest way to make a plugin for Skyrim is to use the Skyrim Creation Kit. Papyrus is the language used for scripting in Skyrim Creation Kit. If I am to use Skyrim Creation Kit to create a Skyrim plugin, I will have to use Papyrus. An huge advantage of using Papyrus alongside the Skyrim Creation Kit, is that it provides functions for interacting with objects in the game and retrieving data from the game. The use of the Creation Kit and Skyrim-specific Papyrus functions (include SKSE functions) are very well documented on the [Creation Kit wiki](http://www.creationkit.com/index.php?title=Main_Page).
-
-##Sources used
-
-The template for the Visual Studio project, including everything in main.cpp of my SKSE plugin that I used is from [here](https://github.com/xanderdunn/skaar/releases/tag/plugin3). I used [this](https://github.com/xanderdunn/skaar/wiki/SKSE%3A-Getting-Started) tutorial and that Visual Studio solution to get started.
-
-
-
 
 ## Trello Board
 Things in the 'Review' column are what was completed in the named sprint, things in the 'To do' column are things for the next sprint. I broke the two sprints down into smaller sections, for purposes of time management.
