@@ -4,6 +4,8 @@ This is the base repository for the COMP140 API Hacking assignment.
 
 ####Requires C++ REST SDK to run which can be [installed through NuGet in Visual Studio](https://github.com/Microsoft/cpprestsdk/wiki/Getting-Started-Tutorial)
 
+C++ REST SDK sometimes needs to be unintalled in NuGet and reinstalled on first use.
+
 The API Hacking Code folder contains a console application that can request the data from Open Notify and store it in variables. 
   
 API Code in COMP150 is the code from the console application integrated into the COMP150 game. The relevant classes are ISSLocation and SpaceGame. 
