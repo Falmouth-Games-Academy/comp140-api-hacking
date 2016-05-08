@@ -6,9 +6,9 @@ This is the base repository for the COMP140 API Hacking assignment.
 
 The API Hacking Code folder contains a console application that can request the data from Open Notify and store it in variables. 
   
-API Code in COMP150 is the code from the console application integrated into the COMP150 game. The relevant classes are ISSLocation and SpaceGame. When running in debug the character movement lags when the ISS location is being updated however this issue doesn't appear when it runs in Release.
+API Code in COMP150 is the code from the console application integrated into the COMP150 game. The relevant classes are ISSLocation and SpaceGame. 
   
-Neither will run without the C++ REST SDK package installed.
+Neither will run without the C++ REST SDK package installed. 
 
 
 
