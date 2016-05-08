@@ -1,4 +1,4 @@
-scriptId = 'com.james120393.falmouth'
+scriptId = 'com.1506530.falmouth'
 minMyoConnectVersion ='0.3.0'
 scriptDetailsUrl = 'https://github.com/James120393/comp140-api-hacking/edit/master/Program/Mouse.lua'
 scriptTitle = 'MYO Controller'
