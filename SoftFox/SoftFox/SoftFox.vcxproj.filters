@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="InitialisationError.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftFox.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftFox_Main.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+    <ClCompile Include="Hunter.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+    <ClCompile Include="Weather.cpp">
+      <Filter>Source File</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Coordinates.h">
+      <Filter>Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="InitialisationError.h">
+      <Filter>Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftFox.h">
+      <Filter>Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftFox_Main.h">
+      <Filter>Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="Hunter.h">
+      <Filter>Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="Weather.h">
+      <Filter>Header File</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="SoftFox.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source File">
+      <UniqueIdentifier>{8170e41f-026e-425a-863e-080ce5fe1d67}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{fb1a4345-aba4-4ce9-947f-27df356bfd6a}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header File">
+      <UniqueIdentifier>{b6fac9da-4a3e-462d-b31a-bacd39f83a2b}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SoftFox.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
