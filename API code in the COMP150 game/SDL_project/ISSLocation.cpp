@@ -63,7 +63,7 @@ void ISSLocation::displayJSONValue(web::json::value ISSData)
 }
 
 
-pplx::task<void> ISSLocation::requestJSONValueAsync()
+pplx::task<void> ISSLocation::requestISSLocation()
 { // Sends request to open notify and if successful extracts the JSON data in to a json value 
 	http_client client(L"http://api.open-notify.org/iss-now.json");
 	return client.request(methods::GET).then([](http_response response) -> pplx::task<json::value>
@@ -97,9 +97,11 @@ void ISSLocation::update()
 	if (updateTime > previousUpdateTime + 30)  // Only runs every 30 frames to prevent the game from lagging
 	{// Currently updates location
 		previousUpdateTime = updateTime;
-		requestJSONValueAsync().wait();
-		backgroundXPos = ((latitude / 90) * windowHeight) + 500;
-		backgroundYPos = ((longitude / 180) * windowWidth) + 500;
+		requestISSLocation();   
+		// adding .wait() to requestISSLocation() makes the program wait for that task to complete 
+		// but made the character movement lag so I've not used it 
+		backgroundXPos = ((latitude / 90) * windowHeight/2);
+		backgroundYPos = ((longitude / 180) * windowWidth/2);
 
 	}
 	updateTime = updateTime + 1;

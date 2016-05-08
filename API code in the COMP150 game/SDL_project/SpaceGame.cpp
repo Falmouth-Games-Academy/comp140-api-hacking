@@ -1,11 +1,5 @@
 #include "stdafx.h"
 #include "SpaceGame.h"
-#include "InitialisationError.h"
-#include "Cell.h"
-#include "Grid.h"
-#include "MainCharacter.h"
-#include "IdleState.h"
-#include "ISSLocation.h"
 
 
 SpaceGame::SpaceGame()
@@ -14,9 +8,7 @@ SpaceGame::SpaceGame()
 	characterTex("Resources\\char.png"),
 	doorTexture("Resources\\door_sprite.png"),
 	earth("Resources\\earth.png"),
-	background("Resources\\bg.png"),
-	background2("Resources\\bg.png"),
-	background3("Resources\\bg.png")
+	backgroundImage("Resources\\bg.png")
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -58,7 +50,7 @@ void SpaceGame::run()
 	ISSLocation location;
 	location.windowHeight = WINDOW_HEIGHT;
 	location.windowWidth = WINDOW_WIDTH;
-	location.requestJSONValueAsync().wait(); //Runs once in the set up to get a previous update time
+	location.requestISSLocation().wait(); //Runs once in the set up to get a previous update time
 	location.update(); //Sets x and y position of background
 
 	running = true;
@@ -88,9 +80,8 @@ void SpaceGame::run()
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 
-		background.render(renderer, location.backgroundXPos, location.backgroundYPos, 1200, 1200); //Renders background
-		background2.render(renderer, location.backgroundXPos, location.backgroundYPos-1200, 1200, 1200); //Renders background
-		background2.render(renderer, location.backgroundXPos - 1200, location.backgroundYPos, 1200, 1200); //Renders background
+		backgroundImage.render(renderer, location.backgroundXPos, location.backgroundYPos, 1200, 1200); //Renders background
+
 		earth.render(renderer, 400, 400, 800, 800); //Renders earth
 
 		int cellSize = room.getCellSize();

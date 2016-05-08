@@ -12,7 +12,7 @@ public:
 
 	void ISSLocation::displayJSONValue(web::json::value ISSData);
 	void update();
-	pplx::task<void> requestJSONValueAsync();
+	pplx::task<void> requestISSLocation();
 
 };
 

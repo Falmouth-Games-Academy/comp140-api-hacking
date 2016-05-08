@@ -4,6 +4,12 @@
 #include "Grid.h"
 #include "Map.h"
 #include "GameConfiguration.h"
+#include "InitialisationError.h"
+#include "Cell.h"
+#include "MainCharacter.h"
+#include "IdleState.h"
+#include "ISSLocation.h"
+
 
 
 class SpaceGame
@@ -25,12 +31,7 @@ private:
 	Texture characterTex;
 	Texture doorTexture;
 	Texture earth;
-	Texture background;
-	Texture background2;
-	Texture background3;
-
-
-
+	Texture backgroundImage;
 	bool running;
 
 };
