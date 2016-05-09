@@ -56,14 +56,14 @@ The easiest way to make a plugin for Skyrim is to use the Skyrim Creation Kit. P
 Things in the 'Review' column are what was completed in the named sprint, things in the 'To do' column are things for the next sprint. I broke the two sprints down into smaller sections, for purposes of time management.
 
 #### Sprint 1
-![Sprint 1](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Trello/Sprint%201.png)
+![Sprint 1](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Screenshots/Trello/Sprint%201.png)
 
 #### Sprint 1.5
-![Sprint 1.5](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Trello/Sprint%201.5.png)
+![Sprint 1.5](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Screenshots/Trello/Sprint%201.5.png)
 
 
 #### Sprint 2
-![Sprint 2](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Trello/Sprint%202.png)
+![Sprint 2](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Screenshots/Trello/Sprint%202.png)
 
 #### Sprint 2.5
-![Sprint 2](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Trello/Sprint%202.5.png)
+![Sprint 2](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Screenshots/Trello/Sprint%202.5.png)
