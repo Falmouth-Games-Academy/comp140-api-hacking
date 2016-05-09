@@ -2,6 +2,8 @@
 
 When you open the Journal menu in Skyrim, the mod will send HTTP requests to Habitica to add/complete Todos on Habitica corresponding to your active and complete quests. A message reporting the result of the HTTP request will appear on screen 10 seconds (not in a menu) later.
 
+The quests that will be updated on Habitica are the primary questlines of [Main Quest](http://www.uesp.net/wiki/Skyrim:Main_Quest), [Daedric Quests](http://www.uesp.net/wiki/Skyrim:Daedric_Quests), [Dark Brotherhood Quests](http://www.uesp.net/wiki/Skyrim:Dark_Brotherhood#Quests), [Thieves Guild Quests](http://www.uesp.net/wiki/Skyrim:Thieves_Guild_(faction)#Quests), [Companions Quests](http://www.uesp.net/wiki/Skyrim:Companions#Quests) and [College of Winterhold Quests](http://www.uesp.net/wiki/Skyrim:College_of_Winterhold_(faction)#Quests).
+
 ## Installation Instructions
 To add the mod to Skyrim, simply copy the "Data" folder in this repository into your Skyrim folder. All the correct files should end up in the right places.
 Then activate the mod with a mod manager for Skyrim.
