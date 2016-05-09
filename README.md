@@ -14,6 +14,9 @@ The SKSE plugin code can be found in the [Skybitica Visual Studio Project Folder
 The Papyrus script can be found in [Data/scripts/source/zQuestLooper.psc](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Data/scripts/source/zQuestLooper.psc).  
 All code in zQuestLooper.psc is written by me, and all code for the SKSE plugin is written by me, EXCEPT for the code in main.cpp, tools.cpp and the the function RegisterFuncs in skybitica.cpp. Sources noted below and in the code.
 
+The relevant things in the Creation Kit Project can be seen in the screenshot below:
+![Creation Kit](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Screenshots/Creation%20Kit.png)
+
 ##Sources used
 
 The template for the Visual Studio project, including everything in main.cpp of my SKSE plugin that I used is from [here](https://github.com/xanderdunn/skaar/releases/tag/plugin3). I used [this](https://github.com/xanderdunn/skaar/wiki/SKSE%3A-Getting-Started) tutorial and that Visual Studio solution to get started.
