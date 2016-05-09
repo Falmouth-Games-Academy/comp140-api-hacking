@@ -80,7 +80,7 @@ Function ConnectQuestsToHabitica()
 
 			; Complete completed quests on Habitica Todo list
 			ElseIf questToBeChecked.isCompleted()
-				CompleteQuestInHabitica(questToBeChecked.GetName(), questToBeChecked.GetId())
+				CompleteQuestInHabitica(questToBeChecked.GetId())
 
 			; Add running quests to Habitica Todo list
 			ElseIf questToBeChecked.IsRunning()
