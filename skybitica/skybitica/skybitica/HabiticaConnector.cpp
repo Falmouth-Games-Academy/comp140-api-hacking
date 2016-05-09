@@ -67,7 +67,7 @@ void HabiticaConnector::addTask(std::wstring taskName, std::wstring taskID)
 	doRequest(request, taskID);
 } 
 
-void HabiticaConnector::completeTask(std::wstring taskName, std::wstring taskID)
+void HabiticaConnector::completeTask(std::wstring taskID)
 {
 	// Create request with POST protocol
 	web::http::http_request request(web::http::methods::POST);

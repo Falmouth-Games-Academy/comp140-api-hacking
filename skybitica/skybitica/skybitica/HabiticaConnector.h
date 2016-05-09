@@ -32,7 +32,7 @@ public:
 	  This method completes the task with the provided ID on the
 	  Habitica todo list, using a POST request.
 	*/
-	void completeTask(std::wstring taskName, std::wstring taskID);
+	void completeTask(std::wstring taskID);
 
 	//! Delete a task from Habitica's Todo list
 	/*!
