@@ -2,7 +2,7 @@
 
 
 HabiticaConnector::HabiticaConnector()
-	: baseUri((U("/api/v2/user/tasks"))),
+	: apiUri((U("/api/v2/user/tasks"))),
 	client(U("https://habitica.com/"))
 {
 }
@@ -21,6 +21,7 @@ void HabiticaConnector::doRequest(web::http::http_request request, std::wstring 
 	pplx::task<web::http::status_code> requestTask = client.request(request).then([=](web::http::http_response response)
 	{
 		_MESSAGE("Received response status code:%u\n", response.status_code());
+		// Log the status code of the finished request
 		finishedRequestTasks[taskID] = response.status_code();
         return response.status_code();
 	});
@@ -60,7 +61,7 @@ void HabiticaConnector::addTask(std::wstring taskName, std::wstring taskID)
 
 	// Create request with POST protocol
 	web::http::http_request request(web::http::methods::POST);
-	request.set_request_uri(baseUri.to_string());
+	request.set_request_uri(apiUri.to_string());
 	request.set_body(task);
 
 	doRequest(request, taskID);
@@ -72,7 +73,7 @@ void HabiticaConnector::completeTask(std::wstring taskName, std::wstring taskID)
 	web::http::http_request request(web::http::methods::POST);
 
 	// Build the URI
-	web::uri_builder requestUri = baseUri;
+	web::uri_builder requestUri = apiUri;
 	requestUri.append(taskID);
 	requestUri.append(U("/up"));	//Completes the Habitica Todo
 	request.set_request_uri(requestUri.to_string());
@@ -86,7 +87,7 @@ void HabiticaConnector::deleteTask(std::wstring taskID)
 	// Create request with DELETE protocol
 	web::http::http_request request(web::http::methods::DEL);
 	
-	web::uri_builder requestUri = baseUri;
+	web::uri_builder requestUri = apiUri;
 	requestUri.append(taskID);
 	request.set_request_uri(requestUri.to_string());
 	doRequest(request, taskID);
