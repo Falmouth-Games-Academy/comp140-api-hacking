@@ -1,5 +1,7 @@
 # COMP140 - API Hacking
 
+When you open the Journal menu in Skyrim, the mod will send HTTP requests to Habitica to add/complete Todos on Habitica corresponding to your active and complete quests. A message reporting the result of the HTTP request will appear on screen 10 seconds (not in a menu) later.
+
 ## Installation Instructions
 To add the mod to Skyrim, simply copy the "Data" folder in this repository into your Skyrim folder. All the correct files should end up in the right places.
 Then activate the mod with a mod manager for Skyrim.
@@ -47,8 +49,6 @@ The easiest way to make a plugin for Skyrim is to use the Skyrim Creation Kit. P
 
 ## Trello Board
 Things in the 'Review' column are what was completed in the named sprint, things in the 'To do' column are things for the next sprint. I broke the two sprints down into smaller sections, for purposes of time management.
-#### Label Key
-![Labels]()
 
 #### Sprint 1
 ![Sprint 1](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Trello/Sprint%201.png)
@@ -59,3 +59,6 @@ Things in the 'Review' column are what was completed in the named sprint, things
 
 #### Sprint 2
 ![Sprint 2](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Trello/Sprint%202.png)
+
+#### Sprint 2.5
+![Sprint 2](https://github.com/NecroReindeer/comp140-api-hacking/blob/master/Trello/Sprint%202.5.png)
