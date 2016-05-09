@@ -6,7 +6,8 @@ The quests that will be updated on Habitica are the primary questlines of [Main 
 
 ## Installation Instructions
 To add the mod to Skyrim, simply copy the "Data" folder in this repository into your Skyrim folder. All the correct files should end up in the right places.
-Then activate the mod with a mod manager for Skyrim.
+Then activate the mod with a mod manager for Skyrim.  
+Note: [Skyrim Script Extender](http://skse.silverlock.org/) must be installed, and Skyrim must be run via that.
 
 ##Structure
 There are two main areas of code - the SKSE plugin written in C++, and the Skyrim Creation Kit script written in Papyrus.  
